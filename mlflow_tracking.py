@@ -1,12 +1,3 @@
-"""
-FILE: mlflow_tracking.py
-RUN AS: Python script (.py)
-COMMAND: python mlflow_tracking.py
-
-This script tracks all experiments using MLflow.
-After running, use 'mlflow ui' to view results.
-"""
-
 import mlflow
 import mlflow.sklearn
 import pandas as pd
@@ -22,9 +13,8 @@ print("="*70)
 print("MLFLOW EXPERIMENT TRACKING - PatrolIQ")
 print("="*70)
 
-# ============================================================================
 # 0. CHECK AND CREATE DATA IF MISSING
-# ============================================================================
+
 print("\n[0/6] Checking for required data files...")
 
 required_files = ['features_geographic.csv', 'features_temporal.csv', 'features_combined.csv']
@@ -75,10 +65,8 @@ if missing_files:
     print("✓ Sample data created")
 else:
     print("✓ All required files found")
-
-# ============================================================================
 # 1. SETUP MLFLOW
-# ============================================================================
+
 print("\n[1/6] Setting up MLflow...")
 
 mlflow.set_tracking_uri("file:./mlruns")
@@ -93,9 +81,9 @@ except:
 mlflow.set_experiment(experiment_name)
 print(f"✓ Tracking URI: {mlflow.get_tracking_uri()}")
 
-# ============================================================================
+
 # 2. LOAD DATA
-# ============================================================================
+
 print("\n[2/6] Loading data...")
 
 df_geo = pd.read_csv('features_geographic.csv')
@@ -106,9 +94,9 @@ print(f"✓ Geographic features: {df_geo.shape}")
 print(f"✓ Temporal features: {df_temporal.shape}")
 print(f"✓ Combined features: {df_combined.shape}")
 
-# ============================================================================
+
 # 3. TRACK GEOGRAPHIC CLUSTERING
-# ============================================================================
+
 print("\n[3/6] Tracking geographic clustering experiments...")
 
 X_geo = df_geo.values
@@ -207,9 +195,9 @@ for k in [5, 7, 8, 10]:
 
 print("✓ Geographic clustering experiments tracked")
 
-# ============================================================================
+
 # 4. TRACK TEMPORAL CLUSTERING
-# ============================================================================
+
 print("\n[4/6] Tracking temporal clustering experiments...")
 
 X_temporal = df_temporal.values
@@ -269,9 +257,9 @@ for k in [3, 5, 7]:
 
 print("✓ Temporal clustering experiments tracked")
 
-# ============================================================================
+
 # 5. TRACK DIMENSIONALITY REDUCTION
-# ============================================================================
+
 print("\n[5/6] Tracking dimensionality reduction experiments...")
 
 X_combined = df_combined.values
@@ -309,9 +297,8 @@ for n_comp in [2, 3, 5, 10, 15]:
 
 print("✓ Dimensionality reduction experiments tracked")
 
-# ============================================================================
 # 6. RETRIEVE AND DISPLAY BEST MODELS
-# ============================================================================
+
 print("\n[6/6] Analyzing results...")
 print("\n" + "="*70)
 print("BEST PERFORMING MODELS")
@@ -363,9 +350,7 @@ try:
 except Exception as e:
     print(f"⚠️  Error retrieving results: {str(e)}")
 
-# ============================================================================
 # FINAL INSTRUCTIONS
-# ============================================================================
 print("\n" + "="*70)
 print("✅ MLFLOW TRACKING COMPLETED!")
 print("="*70)
@@ -382,4 +367,5 @@ print("\n🚀 Next Steps:")
 print("   - Analyze results in MLflow UI")
 print("   - Select best models for deployment")
 print("   - Run visualization scripts")
+
 print("="*70)
