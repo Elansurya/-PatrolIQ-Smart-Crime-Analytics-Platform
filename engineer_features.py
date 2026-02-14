@@ -1,8 +1,3 @@
-"""
-PatrolIQ - Step 2: Feature Engineering
-This script creates advanced features for crime prediction
-"""
-
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
@@ -342,4 +337,5 @@ if __name__ == "__main__":
     print(df_engineered.head())
     
     print("\nAll Features:")
+
     print(df_engineered.columns.tolist())
