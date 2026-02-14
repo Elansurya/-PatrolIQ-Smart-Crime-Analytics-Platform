@@ -1,7 +1,3 @@
-"""
-PatrolIQ - Step 1: Data Acquisition and Preprocessing
-This script downloads, samples, and preprocesses the Chicago crime dataset
-"""
 
 import pandas as pd
 import numpy as np
@@ -289,4 +285,5 @@ if __name__ == "__main__":
     
     print("\nCrime Types Distribution:")
     if 'Primary_Type' in df.columns:
+
         print(df['Primary_Type'].value_counts().head(10))
